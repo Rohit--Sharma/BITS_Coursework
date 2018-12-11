@@ -1,0 +1,540 @@
+radix:
+/*radix sort*/
+#include<stdio.h>
+#include<math.h>
+main()
+{
+    int n; 
+    int l,i,k;
+    int p,r,m;
+    int a[20];
+    int a1[20];
+    int h[20];
+    int b[20];
+    int c[20];
+    int ma=0;
+    int d;
+     int max=0;
+    printf("enter the size of array:\n");
+    scanf("%d",&n);
+    printf("enter elements:\n");
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d",&a[i]);
+        if(a[i]>ma)
+        ma=a[i];
+	a1[i]=a[i];
+	h[i]=a[i];
+    } 
+    while(ma>0)
+    {
+	d++;
+	ma=ma/10;
+    }
+   for(k=0;k<d;k++)
+   {
+       for(p=0,r=1;p<k;p++)
+       {
+           r=r*10;
+       }
+       for(i=0;i<n;i++)
+       {
+           a[i]=a[i]/r;
+       }
+        for(i=0;i<n;i++)
+        {
+			b[i]=a[i]%10;
+           
+		}
+        
+		for(i=0;i<n;i++)
+		{
+			if(b[i]>max)
+			max=b[i];
+		}
+         m=max+1;
+        for(i=0;i<m;i++)
+        {
+            c[i]=0;            
+        }
+        for(i=0;i<n;i++)
+        {
+            c[b[i]]=c[b[i]]+1;
+        }
+       for(i=1;i<m;i++)
+        {
+            c[i]=c[i]+c[i-1];
+        }
+        for(i=n-1;i>=0;i--)
+        {
+            l=c[b[i]];
+            a1[l-1]=h[i];
+            c[b[i]]--;
+        }
+         
+        
+        for(i=0;i<n;i++)
+        {
+          a[i]=a1[i];
+          h[i]=a1[i];
+        }  
+         
+       
+    }  
+     for(i=0;i<n;i++)
+             printf("%d\t",a1[i]);
+             
+}
+reverse sentence:
+#include<stdio.h> 
+#include<string.h>
+ main()
+  { 
+  int i,j,n,count = -1,k=0; 
+  char s[10][20],p[100],t[10];
+  printf("enter the sentence\n");
+  gets(p); 
+  for(i=0;i<100;i++)
+  {
+ if( p[i] == ' ')
+ count++;
+  }
+ // printf("%d",count);
+  j = 0;
+  for( i = 0 ;i<100;i++)
+    {  
+    //printf("%c\n",p[i]);
+    t[k] = p[i];
+	   k++;
+	   if( p[i] == ' ' || p[i] == '\0')
+	   {
+	   	t[k] = '\0';
+	   strcpy( s[j] ,t);
+	   //printf("%s\n",s[j]);
+	   j++;
+	   
+	   k =0;
+	   }
+	  if( j == count)
+	  break;
+	  
+    }
+    for( j =count-1 ;j >=0;j--)
+    printf("%s ",s[j]);
+  }
+reverse only certain char:
+#include<stdio.h>
+#include<string.h>
+int j=0;
+char p[30];
+char s[30];
+int i;
+int k;
+main()
+{
+printf("enter string:");
+gets(s);
+printf("enter no of characters to reverse:");
+scanf("%d",&i);
+reverse(0,i);
+for(k=0;k<j;k++)
+s[k]=p[k];
+reverse(i,strlen(s));
+for(k=0;k<j;k++)
+s[k]=p[k];
+j=0;
+reverse(0,strlen(s));
+for(k=0;k<j;k++)
+s[k]=p[k];
+printf("%s",s);
+}
+void reverse(int l,int h)
+{
+if(l<h)
+{
+reverse(l+1,h);
+p[j]=s[l];
+j++;
+}
+else
+return;
+}
+
+recursive print_in:
+/*print_int using recursion directly as string*/
+#include<stdio.h>
+#include<string.h>
+char s[50]=" ";
+static int i=0;
+main()
+{
+int n;
+printf("enter any number:");
+scanf("%d",&n);
+printf("the number as character string is :");
+print_int(n);
+//printf("%s",s);
+}
+void print_int(int n)
+{
+if(n<0)
+{
+printf("-");
+n=n*(-1);
+}
+if(n>0)
+{
+print_int(n/10);
+printf("%c",n%10+'0');
+//strcat(s,n%10+'0');
+//s[i]=n%10+'0';
+//i++;
+}
+}
+
+recursive itoa:
+/*itoa*/
+#include<stdio.h>
+#include<string.h>
+char s[50]=" ";
+static int i=0;
+main()
+{
+int n;
+printf("enter any number:");
+scanf("%d",&n);
+printf("the number as character string is :");
+itoa(n);
+printf("%s",s);
+}
+void itoa(int n)
+{
+if(n<0)
+{
+printf("-");
+n=n*(-1);
+}
+if(n>0)
+{
+itoa(n/10);
+s[i]=n%10+'0';
+i++;
+}
+}
+
+inplace quick sort:
+/*quick sort*/
+#include<stdio.h>
+void quicksort(int a[],int first,int last)
+{
+int pivindex;
+if(first<last)
+{
+pivindex=partition(a,first,last);
+quicksort(a,first,pivindex-1);
+quicksort(a,pivindex+1,last);
+}
+}
+int partition(int x[],int first,int last)
+{
+int pivot,j,temp,i;
+  if(first<last)
+   {
+     
+     int i,j,k;
+     i=x[first];
+     j=x[(first+last)/2];
+     k=x[last];
+     pivot=median(i,j,k);
+     i=first;
+     j=last;
+     while(i<j)
+     {
+        while(x[i]<=x[pivot]&&i<last)
+        i++;
+        while(x[j]>x[pivot])
+        j--;
+        if(i<j)
+        {
+	     temp=x[i];
+         x[i]=x[j];
+         x[j]=temp;
+        }
+     }
+     temp=x[pivot];
+     x[pivot]=x[j];
+     x[j]=temp;
+	}
+	return j;
+}
+int median(int i,int j,int f)
+{
+int k,l,t;
+int a[3];//={i,j,f};
+a[0]=i;
+a[1]=j;
+a[2]=k;
+for(k=0;k<3;k++)
+{
+for(l=i;l<3;l++)
+{
+if(a[k]>a[l])
+{
+t=a[k];
+a[k]=a[l];
+a[l]=t;
+}
+}
+}
+return a[1];
+}
+main()
+{
+int n,i;
+printf("enter no of elments:");
+scanf("%d",&n);
+int a[n];
+printf("enter elements:");
+for(i=0;i<n;i++)
+scanf("%d",&a[i]);
+quicksort(a,0,n-1);
+printf("sorted elements:");
+for(i=0;i<n;i++)
+{
+printf("%d ",a[i]);
+}
+}
+triplet:
+#include<stdio.h>
+ #include<math.h> 
+ int dist(int x,int y,int z) 
+ { 
+ return abs(x-y)+abs(y-z)+abs(z-x);
+  } 
+  int min(int x,int y,int z) 
+  { 
+  if(x<y) 
+  {
+   if(x<z) 
+   return x; 
+   else return z;
+    } 
+	else 
+	{ 
+	if(y<z) 
+	return y; 
+	else 
+	return z; 
+	} 
+	} 
+	void main()
+	 {
+	  int a[100],b[100],c[100]; 
+  printf("Enter the sizes of the three arrays"); 
+  int a1,b1,c1,i=0,j=0,k=0,r,i1=0,j1=0,k1=0; 
+  int m=0; 
+  scanf("%d%d%d",&a1,&b1,&c1); 
+  printf("Enter the first array");
+   for(i=0;i<a1;i++) 
+  { 
+  scanf("%d",&a[i]); 
+  }
+  
+  printf("Enter the second array"); 
+  for(i=0;i<a1;i++) 
+  { 
+  scanf("%d",&b[i]); 
+  } 
+  printf("Enter the third array"); 
+  for(i=0;i<a1;i++) 
+  { 
+  scanf("%d",&c[i]);
+   } 
+   i=0; 
+   r=dist(a[0],b[0],c[0]); 
+   while((i<a1)&&(j<b1)&&(k<c1))
+    {
+ if(r>dist(a[i],b[j],c[k]))
+  {
+   r=dist(a[i],b[i],c[k]); 
+   i1=i;j1=j;k1=k; 
+   }
+    m=min(a[i],b[j],c[k]); 
+	if(m==a[i]) 
+	i++; 
+	else if(m==b[i]) 
+	j++; 
+	else k++; 
+	} 
+	printf("the triplet is: %d %d %d\nthe distance is:%d",a[i1],b[j1],c[k1],r);
+	 }
+
+time T for quick sort:
+#include<stdio.h>
+ #include<stdlib.h>
+  #include<time.h> 
+  #include<math.h> 
+ 	time_t start,end; 
+	  double diff;
+  void calling(int n);
+  //calling function is used to get different sized arrays during run-time. 
+  void quicksort(int arr[],int a,int b); 
+  void calling(int n) 
+  {
+  
+   int i; 
+   int *arr=(int*)malloc(sizeof(int)*n);
+    //I have created an array in run-time. 
+	for(i=0;i<n;i++) 
+	{
+	 arr[i]= rand()%n; }//I have filled the arrays with some content using the rand function. 
+	 //printf("Size- %d\n",n);
+	   
+	  start=clock(); 
+	  quicksort(arr,0,n); 
+	  end=clock(); 
+	  diff=(double) (
+	  end-start)/CLOCKS_PER_SEC; 
+	  //printf("Time difference is %1.3f\n",diff); 
+	  //quicksort ends. 
+	  printf("\n"); 
+	  printf("%d \t %1.3lf",n,diff); 
+	  printf("\nT/n*logn is %lf",diff/n*log(n)); 
+	  //freeing the memory. 
+	  free(arr); 
+	  printf("\n"); 
+	  }
+	  //calling function ends //code for quicksort 
+	  void quicksort 
+	  (int arr[],int first,int last) 
+	  { 
+	  int pivot,j,temp,i; 
+	  if(first<last) 
+	  { 
+	  pivot=first; 
+	  i=first; 
+	  j=last; 
+	  while(i<j) 
+	  { 
+	  while(arr[i]<=arr[pivot]&&i<last) 
+	  i++; 
+	  while(arr[j]>arr[pivot]) 
+	  j--; 
+	  if(i<j) 
+	  { 
+	  temp=arr[i]; 
+	  arr[i]=arr[j]; 
+	  arr[j]=temp; 
+	  } 
+	  } 
+	  temp=arr[pivot]; 
+	  arr[pivot]=arr[j]; 
+	  arr[j]=temp; 
+	  quicksort(arr,first,j-1); 
+	  quicksort(arr,j+1,last); 
+	  } 
+	  } 
+	  main()
+	  {
+	  	time_t start,end; 
+	  double diff;
+	   printf("SIZE \t Running Time of Quicksort"); 
+	   calling(100000); 
+	   calling(200000); 
+	   calling(500000); 
+	   calling(700000); 
+	   calling(1000000); 
+	   calling(1500000); 
+	   calling(2000000); 
+	   calling(2500000); 
+	   calling(3000000); 
+	   calling(3500000); 
+	   calling(4000000); 
+	   calling(4500000); 
+	   calling(5000000); 
+	   calling(5500000); 
+	   calling(6000000); 
+	   calling(6500000); 
+	   calling(7000000); 
+	   calling(7500000); 
+	   calling(8000000); 
+	   calling(8500000); 
+	   calling(9000000); 
+	   calling(9500000); 
+	   calling(10000000); 
+	   calling(10500000); 
+	   calling(11000000); 
+	   calling(11500000); 
+	   calling(12000000); 
+	   }
+time T for merge sort:
+#include<stdio.h> 
+#include<stdlib.h>
+ #include<time.h>
+  #include<math.h>
+   time_t start,end; 
+   double diff; 
+   void calling(int n);
+   //calling function is used to get different sized arrays during run-time. 
+   void mergesort(int arr[],int a,int b); 
+   void calling(int n) { 
+   int i; 
+   int *arr=(int*)malloc(sizeof(int)*n); 
+   //I have created an array in run-time. 
+   for(i=0;i<n;i++) 
+   { 
+   arr[i]= rand()%n; 
+   }
+   //I have filled an array with some content using the rand function. 
+  
+   start = clock(); 
+   mergesort(arr,0,n); 
+   end=clock(); 
+   diff=(double)(end-start)/CLOCKS_PER_SEC; 
+   //mergesort ends printf("\n"); 
+   printf("%d \t\t %1.2lf",n,diff); 
+   printf("\nT/n*logn is %lf",diff/n*log(n)); 
+   //freeing the memory. 
+   free(arr); 
+   printf("\n"); 
+   } //code for mergesort 
+   void mergesort(int arr[],int low,int high) 
+   { 
+   int i=0; 
+   int length=high-low+1; 
+   int pivot=0; 
+   int merge1=0; 
+   int merge2=0; 
+   int *working=(int*)malloc(sizeof(int)*length); 
+   if(low==high) 
+   return; 
+   pivot=(low+high)/2; 
+   mergesort(arr,low,pivot); 
+   mergesort(arr,pivot+1,high); 
+   for(i=0;i<length;i++) 
+   working[i]=arr[low+i]; 
+   merge1=0; 
+   merge2=pivot-low+1; 
+   for(i=0;i<length;i++) 
+   { 
+   if(merge2<=high-low) 
+   if(merge1<=pivot-low) 
+   if(working[merge1]>working[merge2]) 
+   arr[i+low]=working[merge2++]; 
+   else arr[i+low]=working[merge1++]; 
+   else arr[i+low]=working[merge2++]; 
+   else arr[i+low]=working[merge1++]; 
+   } 
+   } 
+   main()
+   { 
+   printf("SIZE \t Running Time of Merge sort"); 
+   calling(100000); 
+   calling(200000); 
+   calling(500000); 
+   calling(700000); 
+   calling(1000000); 
+   calling(1500000); 
+   calling(2000000); 
+   calling(2500000); 
+   }
