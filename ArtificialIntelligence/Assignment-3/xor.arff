@@ -1,0 +1,13 @@
+@relation PerceptronXOR
+@attribute X1 numeric
+@attribute X2 numeric
+@attribute Output numeric
+@data
+0, 0, 0
+1, 0, 1
+0, 1, 1
+1, 1, 0
+0, 0, 0
+1, 0, 1
+0, 1, 1
+1, 1, 0

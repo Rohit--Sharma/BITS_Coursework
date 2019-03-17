@@ -1,0 +1,45 @@
+=== Run information ===
+
+Scheme:weka.classifiers.functions.MultilayerPerceptron -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H 2
+Relation:     PerceptronXOR
+Instances:    4
+Attributes:   3
+              X1
+              X2
+              Output
+Test mode:evaluate on training data
+
+=== Classifier model (full training set) ===
+
+Linear Node 0
+    Inputs    Weights
+    Threshold    1.201946073787422
+    Node 1    -3.1277491093719436
+    Node 2    3.2211187739315217
+Sigmoid Node 1
+    Inputs    Weights
+    Threshold    1.0017904224497758
+    Attrib X1    -1.8668746389034567
+    Attrib X2    1.8070925645762244
+Sigmoid Node 2
+    Inputs    Weights
+    Threshold    -3.7081939947579117
+    Attrib X1    -3.185559927055833
+    Attrib X2    2.7127022622592616
+Class 
+    Input
+    Node 0
+
+
+Time taken to build model: 0.03 seconds
+
+=== Evaluation on training set ===
+=== Summary ===
+
+Correlation coefficient                  1     
+Mean absolute error                      0     
+Root mean squared error                  0     
+Relative absolute error                  0      %
+Root relative squared error              0      %
+Total Number of Instances                4     
+
