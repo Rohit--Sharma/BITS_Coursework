@@ -1,0 +1,7 @@
+5
+4
+big red circle no
+small red triangle no
+small red circle yes
+big blue circle no
+small blue circle yes

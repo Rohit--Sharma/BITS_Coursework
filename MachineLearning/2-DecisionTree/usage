@@ -1,0 +1,6 @@
+Usage: 
+	Compile: 
+	javac -d . *.java 
+	
+	Run: 
+	java DecisionTree.DecisionTreeAssignment [Training data] [Testing data]
